@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+*.tsbuildinfo
+managed/*.wasm
+managed/*.keys
+managed/*.json
+!managed/contract/index.js
+!managed/contract/index.d.ts
+!managed/contract/index.cjs
