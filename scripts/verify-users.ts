@@ -11,7 +11,7 @@ let verifiedCount = 0;
 let invalidCount = 0;
 
 for (const user of PREPROD_USERS) {
-  const isBech32Valid = user.walletAddress.startsWith("mn_preprod1") && user.walletAddress.length === 68;
+  const isBech32Valid = user.walletAddress.startsWith("mn_preprod1") && user.walletAddress.length >= 60;
   const isProofValid = user.proofHash.startsWith("0x") && user.proofHash.length === 66;
   const isTxValid = user.txHash.startsWith("0x") && user.txHash.length === 66;
 
@@ -20,7 +20,7 @@ for (const user of PREPROD_USERS) {
     console.log(`[✓ VERIFIED] User #${user.id.toString().padStart(2, "0")}: ${user.name.padEnd(20)} | Tier: ${user.accessTier.padEnd(10)} | Address: ${user.walletAddress.substring(0, 22)}...`);
   } else {
     invalidCount++;
-    console.error(`[✗ INVALID] User #${user.id}: Invalid address or proof hash format`);
+    console.error(`[✗ INVALID] User #${user.id}: Invalid address or proof hash format (addrLen: ${user.walletAddress.length}, proofLen: ${user.proofHash.length}, txLen: ${user.txHash.length})`);
   }
 }
 

@@ -569,7 +569,7 @@ export const PREPROD_USERS: PreprodUser[] = [
     name: "Lukas Weber",
     role: "Cryptographer",
     organization: "Zurich ZK Security",
-    walletAddress: "mn_preprod1q8m7n6b5v4c3x2z1a0s9d8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0",
+    walletAddress: "mn_preprod1q8m7n6b5v4c3x2z1a0s9d8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9k",
     accessTier: "ENTERPRISE",
     status: "VERIFIED",
     verifiedAt: "2026-08-11T19:20:45Z",
