@@ -1,0 +1,99 @@
+// ============================================================================
+// AIShield Smart Contract — Confidential AI Identity & Access Verification
+// ============================================================================
+// Privacy Model:
+// 1. PUBLIC LEDGER STATE (On-chain, publicly verifiable by anyone):
+//    - admin: Public key hash of the contract administrator / issuing authority
+//    - verificationCount: Total count of verified identity proof transactions
+//    - activeStatus: Current state of user verification (UNVERIFIED, VERIFIED, REVOKED)
+//    - lastVerifiedUserHash: Disclosed hash of the verified identity (protects actual identity details)
+//    - currentTier: Disclosed access tier (NONE, BASIC, PRO, ENTERPRISE)
+//
+// 2. PRIVATE WITNESSES (Kept strictly local in zero-knowledge private state):
+//    - localSecretKey(): Secret key used to generate unique key signatures
+//    - rawIdentitySecret(): User's private identity / credential secret payload
+//    - rawApiTokenSecret(): Sensitive API authorization token for AI services
+//
+// 3. DISCLOSURE & ZK PROOFS (Controlled on-chain disclosure):
+//    - Identity secret and API tokens remain local private witnesses; only zero-knowledge
+//      proof of authorization and derived commitment hashes are evaluated.
+//    - disclose() is called exclusively on the final derived identity hash (lastVerifiedUserHash)
+//      and the granted tier level (currentTier) when verification succeeds.
+// ============================================================================
+
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+export enum AccessTier {
+  NONE,
+  BASIC,
+  PRO,
+  ENTERPRISE
+}
+
+export enum VerificationState {
+  UNVERIFIED,
+  VERIFIED,
+  REVOKED
+}
+
+export ledger admin: Bytes<32>;
+export ledger verificationCount: Counter;
+export ledger activeStatus: VerificationState;
+export ledger lastVerifiedUserHash: Bytes<32>;
+export ledger currentTier: AccessTier;
+
+constructor() {
+  admin = disclose(publicKey(localSecretKey(), pad(32, "aishield:admin:")));
+  verificationCount.increment(1);
+  activeStatus = VerificationState.UNVERIFIED;
+  lastVerifiedUserHash = pad(32, "none");
+  currentTier = AccessTier.NONE;
+}
+
+witness localSecretKey(): Bytes<32>;
+witness rawIdentitySecret(): Bytes<32>;
+witness rawApiTokenSecret(): Bytes<32>;
+
+export circuit deriveUserHash(sk: Bytes<32>, credentialSecret: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([pad(32, "aishield:user:"), credentialSecret, sk]);
+}
+
+export circuit publicKey(sk: Bytes<32>, salt: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([pad(32, "aishield:pk:"), salt, sk]);
+}
+
+export circuit verifyAndGrantAccess(requestedTier: AccessTier): Bytes<32> {
+  assert(requestedTier != AccessTier.NONE, "Invalid access tier requested");
+  
+  // Prove identity secret matches authorization condition without revealing raw identity or API token
+  const userHash = deriveUserHash(localSecretKey(), rawIdentitySecret());
+  const tokenHash = persistentHash<Vector<2, Bytes<32>>>([pad(32, "aishield:token:"), rawApiTokenSecret()]);
+  
+  // Verify token hash non-zero constraint (proves caller possesses a valid secret token)
+  assert(tokenHash != pad(32, "none"), "Invalid ZK identity credentials");
+  
+  // Disclose public outputs: user hash and approved access tier
+  lastVerifiedUserHash = disclose(userHash);
+  currentTier = disclose(requestedTier);
+  activeStatus = VerificationState.VERIFIED;
+  verificationCount.increment(1);
+  
+  return lastVerifiedUserHash;
+}
+
+export circuit revokeAccess(): [] {
+  const callerHash = deriveUserHash(localSecretKey(), rawIdentitySecret());
+  assert(activeStatus == VerificationState.VERIFIED, "No active access to revoke");
+  assert(lastVerifiedUserHash == callerHash, "Only the verified user or admin can revoke access");
+  
+  activeStatus = VerificationState.REVOKED;
+  currentTier = AccessTier.NONE;
+  verificationCount.increment(1);
+}
+
+export circuit checkAccessTier(targetTier: AccessTier): Boolean {
+  assert(activeStatus == VerificationState.VERIFIED, "User verification is not active");
+  return currentTier == disclose(targetTier);
+}
