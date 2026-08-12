@@ -6,7 +6,7 @@
   "scripts": {
     "compact": "compact compile contracts/aishield.compact managed",
     "dev": "vite",
-    "build": "npm run compact && tsc -b && vite build",
+    "build": "tsc -b && vite build",
     "test": "vitest run",
     "verify-users": "tsx scripts/verify-users.ts",
     "deploy": "tsx scripts/deploy.ts",
