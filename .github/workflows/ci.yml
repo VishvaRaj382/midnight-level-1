@@ -1,4 +1,4 @@
-name: CI
+name: AIShield Midnight CI/CD
 
 on:
   push:

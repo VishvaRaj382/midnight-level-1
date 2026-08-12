@@ -2,7 +2,7 @@
 
 ![Quality Standard](https://img.shields.io/badge/Quality%20Standard-%2410%2C000%20Grand%20Prize%20Pool%20Grade-gold?style=for-the-badge)
 ![Level 5 Status](https://img.shields.io/badge/Midnight%20Challenge-Level%205%20Passed-emerald?style=for-the-badge)
-![CI Status](https://github.com/VishvaRaj382/midnight-level-5/actions/workflows/ci.yml/badge.svg)
+![AIShield Midnight CI/CD](https://github.com/VishvaRaj382/midnight-level-5/actions/workflows/ci.yml/badge.svg)
 ![Preprod Users](https://img.shields.io/badge/Preprod%20Users-50%20Verifiable%20Addresses-cyan?style=for-the-badge)
 ![Feedback Loop](https://img.shields.io/badge/Feedback%20Loop-Documented%20%26%20Active-purple?style=for-the-badge)
 ![Commits](https://img.shields.io/badge/Git%20Commits-20%2B%20Meaningful-blue?style=for-the-badge)
