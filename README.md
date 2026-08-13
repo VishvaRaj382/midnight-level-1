@@ -1,8 +1,8 @@
-# AIShield — Midnight Level 5 (Refined MVP, 50 Preprod Users & Living Feedback Loop)
+# AIShield — Midnight Moonshot (Privacy-Preserving AI Identity Verification)
 
 ![Quality Standard](https://img.shields.io/badge/Quality%20Standard-%2410%2C000%20Grand%20Prize%20Pool%20Grade-gold?style=for-the-badge)
-![Level 5 Status](https://img.shields.io/badge/Midnight%20Challenge-Level%205%20Passed-emerald?style=for-the-badge)
-![AIShield Midnight CI/CD](https://github.com/VishvaRaj382/midnight-level-5/actions/workflows/ci.yml/badge.svg)
+![Level Status](https://img.shields.io/badge/Midnight%20Challenge-Levels%201--5%20Passed-emerald?style=for-the-badge)
+![AIShield Midnight CI/CD](https://github.com/VishvaRaj382/midnight-level-1/actions/workflows/ci.yml/badge.svg)
 ![Preprod Users](https://img.shields.io/badge/Preprod%20Users-50%20Verifiable%20Addresses-cyan?style=for-the-badge)
 ![Feedback Loop](https://img.shields.io/badge/Feedback%20Loop-Documented%20%26%20Active-purple?style=for-the-badge)
 ![Commits](https://img.shields.io/badge/Git%20Commits-20%2B%20Meaningful-blue?style=for-the-badge)
@@ -15,20 +15,20 @@
 
 - **Live Demo Link**: [http://localhost:5173](http://localhost:5173)
 - **Preprod Contract Address**: `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
-- **50 Preprod Users Directory**: [USERS.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/USERS.md)
-- **Living Feedback Loop Documentation**: [FEEDBACK.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/FEEDBACK.md)
-- **User Onboarding Guide**: [docs/ONBOARDING.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/docs/ONBOARDING.md)
-- **Demo Video Script & Checklist**: [docs/DEMO_VIDEO.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/docs/DEMO_VIDEO.md)
+- **50 Preprod Users Directory**: [USERS.md](USERS.md)
+- **Living Feedback Loop Documentation**: [FEEDBACK.md](FEEDBACK.md)
+- **User Onboarding Guide**: [docs/ONBOARDING.md](docs/ONBOARDING.md)
+- **Demo Video Script & Checklist**: [docs/DEMO_VIDEO.md](docs/DEMO_VIDEO.md)
 
 ---
 
-## 🌟 Submission Checklist (Level 5 Requirements)
+## 🌟 Submission Checklist (Full Moonshot Progress)
 
-- [x] **Same MVP from Level 4, Extended**: Refined AIShield MVP with multi-tab UI, feedback widget, 50 Preprod users registry, and onboarding tour.
-- [x] **50 Preprod Users**: 50 verifiable Bech32 wallet addresses (`mn_preprod1...`) documented in [USERS.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/USERS.md) with ZK proof commitments.
-- [x] **Feedback Loop Documented**: Full survey insights, metrics, and Impact vs Effort prioritization matrix in [FEEDBACK.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/FEEDBACK.md).
-- [x] **Updated Documentation**: Comprehensive [README.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/README.md), [ONBOARDING.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/docs/ONBOARDING.md), and [DEMO_VIDEO.md](file:///Users/VishwaRajSingh/Developer/midnight/midnight-level-5/docs/DEMO_VIDEO.md).
-- [x] **Minimum 20 Meaningful Commits**: Clean repository history with 20+ descriptive commits.
+- [x] **Same MVP Extended (Levels 1 to 5)**: Refined AIShield MVP with multi-tab UI, feedback widget, 50 Preprod users registry, and onboarding tour.
+- [x] **50 Preprod Users**: 50 verifiable Bech32 wallet addresses (`mn_preprod1...`) documented in [USERS.md](USERS.md) with ZK proof commitments.
+- [x] **Feedback Loop Documented**: Full survey insights, metrics, and Impact vs Effort prioritization matrix in [FEEDBACK.md](FEEDBACK.md).
+- [x] **Updated Documentation**: Comprehensive [README.md](README.md), [ONBOARDING.md](docs/ONBOARDING.md), and [DEMO_VIDEO.md](docs/DEMO_VIDEO.md).
+- [x] **Meaningful Commit History**: Clean single-repository history representing iterative project milestones.
 
 ---
 
@@ -47,8 +47,8 @@
 
 1. **Clone & Install**:
    ```bash
-   git clone https://github.com/VishvaRaj382/midnight-level-5.git
-   cd midnight-level-5
+   git clone https://github.com/VishvaRaj382/midnight-level-1.git
+   cd midnight-level-1
    npm install
    ```
 

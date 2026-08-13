@@ -1,7 +1,7 @@
 {
-  "name": "aishield-midnight-level-5",
+  "name": "aishield-midnight",
   "version": "1.0.0",
-  "description": "AIShield — Privacy-Preserving AI Identity Verification Platform (Midnight Preprod MVP Level 5)",
+  "description": "AIShield — Privacy-Preserving AI Identity Verification Platform on Midnight Preprod",
   "type": "module",
   "scripts": {
     "compact": "compact compile contracts/aishield.compact managed",
