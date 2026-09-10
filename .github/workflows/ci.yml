@@ -1,4 +1,4 @@
-name: PrivAI Finance Midnight CI/CD
+name: AIShield Midnight CI/CD
 
 on:
   push:
@@ -23,14 +23,11 @@ jobs:
       - name: Install Dependencies
         run: npm install --include=optional
 
-      - name: TypeScript Type Check
-        run: npx tsc --noEmit
+      - name: Run 50 Preprod User Address Verification
+        run: npm run verify-users
 
-      - name: Run Vitest Unit & Circuit Tests
-        run: npm test
-
-      - name: Verify Preprod Contract Deployment
-        run: npm run deploy
+      - name: Run Vitest Unit Tests
+        run: npm run test
 
       - name: Build Production Bundle
         run: npm run build

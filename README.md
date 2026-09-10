@@ -1,9 +1,10 @@
 # PrivAI Finance — Privacy-Preserving Financial Eligibility Platform
 
 [![Midnight Preprod](https://img.shields.io/badge/Midnight-Preprod%20Testnet-cyan?style=for-the-badge&logo=shield)](https://midnight.network)
-[![Level Status](https://img.shields.io/badge/RiseIn%20Challenge-Level%202%20Passed-emerald?style=for-the-badge)](docs/evidence/LEVEL2_EVIDENCE.md)
+[![Level Status](https://img.shields.io/badge/RiseIn%20Challenge-Level%203%20Passed-emerald?style=for-the-badge)](docs/evidence/LEVEL3_EVIDENCE.md)
+[![PrivAI Finance Midnight CI/CD](https://github.com/VishvaRaj382/midnight-level-1/actions/workflows/ci.yml/badge.svg)](.github/workflows/ci.yml)
 [![Compact 0.23](https://img.shields.io/badge/Smart%20Contract-Compact%200.23-purple?style=for-the-badge)](contracts/privai_finance.compact)
-[![Tests Passing](https://img.shields.io/badge/Vitest-22%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL2_EVIDENCE.md)
+[![Tests Passing](https://img.shields.io/badge/Vitest-22%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL3_EVIDENCE.md)
 [![Preprod Contract](https://img.shields.io/badge/Preprod%20Contract-0x02008f...0d7e-blue?style=for-the-badge)](scripts/deploy.ts)
 
 > **PrivAI Finance** is a zero-knowledge financial eligibility verification platform on the Midnight Network. It enables users to prove they satisfy financial conditions (such as `"Monthly income >= ₹50,000"`) without revealing their exact sensitive financial records to lenders, platforms, DAOs, or employers.
@@ -17,6 +18,7 @@
 - **Deployed Contract Address:** `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
 - **Wallet Compatibility:** Midnight Lace Wallet extension (`window.midnight.mnLace`)
 - **Faucet:** [Midnight Preprod Faucet](https://faucet.preprod.midnight.network)
+- **Product Proposal:** [PROPOSAL.md](PROPOSAL.md)
 
 ---
 
@@ -85,7 +87,8 @@ Authoritative On-Chain Verification & Selective Disclosure
 - **Frontend Dashboard:** [`src/components/PrivAIGuard.tsx`](src/components/PrivAIGuard.tsx)
 - **Lace Wallet Hook:** [`src/hooks/useMidnight.ts`](src/hooks/useMidnight.ts)
 - **Deployment Script:** [`scripts/deploy.ts`](scripts/deploy.ts)
-- **Evidence Dossier:** [`docs/evidence/LEVEL2_EVIDENCE.md`](docs/evidence/LEVEL2_EVIDENCE.md)
+- **Product Proposal:** [`PROPOSAL.md`](PROPOSAL.md)
+- **Evidence Dossier:** [`docs/evidence/LEVEL3_EVIDENCE.md`](docs/evidence/LEVEL3_EVIDENCE.md)
 
 ---
 
@@ -126,6 +129,7 @@ npm run deploy
 | :--- | :---: | :--- | :--- |
 | **Level 1: Foundation** | ✅ PASS | First Compact 0.23 contract, tests, managed runtime | [LEVEL1_EVIDENCE.md](docs/evidence/LEVEL1_EVIDENCE.md) |
 | **Level 2: Frontend + Wallet** | ✅ PASS | Lace integration, ZK proof UI, AI rule parser, Preprod script | [LEVEL2_EVIDENCE.md](docs/evidence/LEVEL2_EVIDENCE.md) |
+| **Level 3: Production-Grade dApp** | ✅ PASS | CI/CD GitHub Actions, PROPOSAL.md, 22 tests passing | [LEVEL3_EVIDENCE.md](docs/evidence/LEVEL3_EVIDENCE.md) |
 
 ---
 
