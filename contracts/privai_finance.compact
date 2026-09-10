@@ -1,0 +1,104 @@
+// ============================================================================
+// PrivAI Finance Smart Contract — Privacy-Preserving Financial Eligibility
+// ============================================================================
+// Privacy Model:
+// 1. PUBLIC LEDGER STATE (On-chain, publicly verifiable by any verifier/lender):
+//    - admin: Public authority commitment hash
+//    - verificationCount: Total count of verified eligibility proof transactions
+//    - activeRequirementThreshold: Public benchmark threshold (e.g. 50,000 INR)
+//    - activeRequirementMetric: Public identifier of the financial metric
+//    - lastVerifiedCommitment: Disclosed pseudonym commitment of the applicant
+//    - lastVerificationResult: Disclosed boolean eligibility outcome (true/false)
+//
+// 2. PRIVATE WITNESSES (Kept strictly local in zero-knowledge private state):
+//    - localSecretKey(): Secret key of the applicant
+//    - monthlyIncome(): Exact financial income value of the applicant (e.g. 73,500)
+//    - financialSalt(): Confidential blinding factor protecting financial data
+//
+// 3. DISCLOSURE & ZK PROOFS (Deliberate disclosure):
+//    - The exact income and financial salt remain private witnesses.
+//    - Only the cryptographic proof that monthlyIncome >= threshold and the derived
+//      commitment hash are disclosed.
+//    - Verifier learns: ELIGIBLE = YES (or NO). Verifier DOES NOT learn the exact income.
+// ============================================================================
+
+pragma language_version 0.23;
+
+import CompactStandardLibrary;
+
+export enum VerificationStatus {
+  UNVERIFIED,
+  ELIGIBLE,
+  INELIGIBLE
+}
+
+export ledger admin: Bytes<32>;
+export ledger verificationCount: Counter;
+export ledger activeRequirementThreshold: Uint<64>;
+export ledger activeRequirementMetric: Bytes<32>;
+export ledger lastVerifiedCommitment: Bytes<32>;
+export ledger lastVerificationResult: VerificationStatus;
+
+constructor() {
+  admin = disclose(publicKey(localSecretKey(), pad(32, "privai:admin:")));
+  verificationCount.increment(1);
+  activeRequirementThreshold = 50000;
+  activeRequirementMetric = pad(32, "monthly_income");
+  lastVerifiedCommitment = pad(32, "none");
+  lastVerificationResult = VerificationStatus.UNVERIFIED;
+}
+
+witness localSecretKey(): Bytes<32>;
+witness monthlyIncome(): Uint<64>;
+witness financialSalt(): Bytes<32>;
+
+export circuit deriveUserCommitment(sk: Bytes<32>, salt: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([pad(32, "privai:user:"), salt, sk]);
+}
+
+export circuit deriveFinancialCommitment(income: Uint<64>, salt: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([pad(32, "privai:income:"), salt, pad(32, "val")]);
+}
+
+export circuit publicKey(sk: Bytes<32>, salt: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([pad(32, "privai:pk:"), salt, sk]);
+}
+
+export circuit setRequirementThreshold(minIncome: Uint<64>, metric: Bytes<32>): [] {
+  assert(minIncome > 0, "Threshold must be greater than zero");
+  activeRequirementThreshold = disclose(minIncome);
+  activeRequirementMetric = disclose(metric);
+  verificationCount.increment(1);
+}
+
+export circuit proveIncomeEligibility(minIncome: Uint<64>): Boolean {
+  assert(minIncome > 0, "Minimum income threshold must be positive");
+
+  const actualIncome = monthlyIncome();
+  const sk = localSecretKey();
+  const salt = financialSalt();
+
+  // Compute deterministic pseudonymous user commitment without revealing user identity or income
+  const userCommitment = deriveUserCommitment(sk, salt);
+
+  // Evaluate zero-knowledge condition: actualIncome >= minIncome
+  const isEligible = actualIncome >= minIncome;
+
+  // Deliberately disclose the eligibility outcome and pseudonym commitment
+  lastVerifiedCommitment = disclose(userCommitment);
+  activeRequirementThreshold = disclose(minIncome);
+  activeRequirementMetric = pad(32, "monthly_income");
+
+  if (isEligible) {
+    lastVerificationResult = VerificationStatus.ELIGIBLE;
+  } else {
+    lastVerificationResult = VerificationStatus.INELIGIBLE;
+  }
+
+  verificationCount.increment(1);
+  return disclose(isEligible);
+}
+
+export circuit queryVerificationResult(): VerificationStatus {
+  return lastVerificationResult;
+}
