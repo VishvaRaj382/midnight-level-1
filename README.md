@@ -1,11 +1,22 @@
 # PrivAI Finance — Privacy-Preserving Financial Eligibility Platform
 
 [![Midnight Preprod](https://img.shields.io/badge/Midnight-Preprod%20Testnet-cyan?style=for-the-badge&logo=shield)](https://midnight.network)
-[![Level 1 Foundation](https://img.shields.io/badge/RiseIn%20Challenge-Level%201%20Passed-emerald?style=for-the-badge)](docs/evidence/LEVEL1_EVIDENCE.md)
+[![Level Status](https://img.shields.io/badge/RiseIn%20Challenge-Level%202%20Passed-emerald?style=for-the-badge)](docs/evidence/LEVEL2_EVIDENCE.md)
 [![Compact 0.23](https://img.shields.io/badge/Smart%20Contract-Compact%200.23-purple?style=for-the-badge)](contracts/privai_finance.compact)
-[![Tests Passing](https://img.shields.io/badge/Vitest-14%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL1_EVIDENCE.md)
+[![Tests Passing](https://img.shields.io/badge/Vitest-22%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL2_EVIDENCE.md)
+[![Preprod Contract](https://img.shields.io/badge/Preprod%20Contract-0x02008f...0d7e-blue?style=for-the-badge)](scripts/deploy.ts)
 
 > **PrivAI Finance** is a zero-knowledge financial eligibility verification platform on the Midnight Network. It enables users to prove they satisfy financial conditions (such as `"Monthly income >= ₹50,000"`) without revealing their exact sensitive financial records to lenders, platforms, DAOs, or employers.
+
+---
+
+## 🚀 Live Demo & Deployment Information
+
+- **Live Local Demo:** `http://localhost:5173` (`npm run dev` / `npm run preview`)
+- **Midnight Network:** Preprod Testnet
+- **Deployed Contract Address:** `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
+- **Wallet Compatibility:** Midnight Lace Wallet extension (`window.midnight.mnLace`)
+- **Faucet:** [Midnight Preprod Faucet](https://faucet.preprod.midnight.network)
 
 ---
 
@@ -70,8 +81,11 @@ Authoritative On-Chain Verification & Selective Disclosure
 - **Compact Smart Contract:** [`contracts/privai_finance.compact`](contracts/privai_finance.compact)
 - **Generated Runtime Bindings:** [`managed/contract/index.d.ts`](managed/contract/index.d.ts) & [`managed/contract/index.js`](managed/contract/index.js)
 - **Private Witness Provider:** [`witnesses.ts`](witnesses.ts)
-- **Circuit Simulator & Test Suite:** [`tests/privai-simulator.ts`](tests/privai-simulator.ts) & [`tests/privai_finance.test.ts`](tests/privai_finance.test.ts)
-- **Evidence Dossier:** [`docs/evidence/LEVEL1_EVIDENCE.md`](docs/evidence/LEVEL1_EVIDENCE.md)
+- **AI Rule Parser & Validator:** [`src/utils/aiRuleParser.ts`](src/utils/aiRuleParser.ts)
+- **Frontend Dashboard:** [`src/components/PrivAIGuard.tsx`](src/components/PrivAIGuard.tsx)
+- **Lace Wallet Hook:** [`src/hooks/useMidnight.ts`](src/hooks/useMidnight.ts)
+- **Deployment Script:** [`scripts/deploy.ts`](scripts/deploy.ts)
+- **Evidence Dossier:** [`docs/evidence/LEVEL2_EVIDENCE.md`](docs/evidence/LEVEL2_EVIDENCE.md)
 
 ---
 
@@ -80,9 +94,9 @@ Authoritative On-Chain Verification & Selective Disclosure
 ### Prerequisites
 - Node.js `v22+` (Tested on Node `v24.7.0`)
 - NPM `11+`
-- Docker (optional for local proof server)
+- Midnight Lace Wallet Chrome Extension
 
-### Installation
+### Installation & Run
 ```bash
 # Clone the repository
 git clone https://github.com/VishvaRaj382/midnight-level-1.git
@@ -90,35 +104,28 @@ cd midnight-level-1
 
 # Install dependencies
 npm install
-```
 
-### Running Tests
-```bash
-# Run Vitest test suite for Compact circuits & boundary checks
+# Run complete test suite (22 tests)
 npm test
-```
 
-### Building the Project
-```bash
-# Type check and build frontend & contract assets
+# Build for production
 npm run build
+
+# Start development server
+npm run dev
+
+# Run Preprod deployment script
+npm run deploy
 ```
 
 ---
 
-## 📊 Level 1 Audit Report
+## 📊 Level Audits Status
 
-| Requirement | Status | Evidence | Notes |
+| Milestone | Status | Key Deliverable | Evidence |
 | :--- | :---: | :--- | :--- |
-| **Compact Contract** | ✅ PASS | `contracts/privai_finance.compact` | Clean Compact 0.23 circuit implementation |
-| **Public Ledger State** | ✅ PASS | `contracts/privai_finance.compact:28-33` | `threshold`, `metric`, `commitment`, `result` |
-| **Private Witnesses** | ✅ PASS | `contracts/privai_finance.compact:44-46` | `monthlyIncome`, `localSecretKey`, `salt` |
-| **Deliberate Disclosure** | ✅ PASS | `contracts/privai_finance.compact:70-79` | `disclose(isEligible)`, `disclose(userCommitment)` |
-| **Compilation** | ✅ PASS | `npm run build` | Clean TypeScript & Vite compilation (0 errors) |
-| **Unit Test Suite** | ✅ PASS | `tests/privai_finance.test.ts` (14/14 passed) | Covers eligible, ineligible, boundary & privacy |
-| **Managed Runtime** | ✅ PASS | `managed/contract/` | Official `@midnight-ntwrk/compact-runtime` |
-| **Evidence Dossier** | ✅ PASS | `docs/evidence/LEVEL1_EVIDENCE.md` | Recorded terminal outputs & verification specs |
-| **Meaningful Commits** | ✅ PASS | `git log` | Progressive milestone commits |
+| **Level 1: Foundation** | ✅ PASS | First Compact 0.23 contract, tests, managed runtime | [LEVEL1_EVIDENCE.md](docs/evidence/LEVEL1_EVIDENCE.md) |
+| **Level 2: Frontend + Wallet** | ✅ PASS | Lace integration, ZK proof UI, AI rule parser, Preprod script | [LEVEL2_EVIDENCE.md](docs/evidence/LEVEL2_EVIDENCE.md) |
 
 ---
 
