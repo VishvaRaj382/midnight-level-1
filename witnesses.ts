@@ -1,20 +1,20 @@
 import type { Ledger } from './managed/contract/index.js';
 import type { WitnessContext } from '@midnight-ntwrk/compact-runtime';
 
-export interface AIShieldPrivateState {
+export interface PrivAIPrivateState {
   localSecretKey: Uint8Array;
-  rawIdentitySecret: Uint8Array;
-  rawApiTokenSecret: Uint8Array;
+  monthlyIncome: bigint;
+  financialSalt: Uint8Array;
 }
 
 export const witnesses = {
-  localSecretKey: (context: WitnessContext<Ledger, AIShieldPrivateState>): [AIShieldPrivateState, Uint8Array] => {
+  localSecretKey: (context: WitnessContext<Ledger, PrivAIPrivateState>): [PrivAIPrivateState, Uint8Array] => {
     return [context.privateState, context.privateState.localSecretKey];
   },
-  rawIdentitySecret: (context: WitnessContext<Ledger, AIShieldPrivateState>): [AIShieldPrivateState, Uint8Array] => {
-    return [context.privateState, context.privateState.rawIdentitySecret];
+  monthlyIncome: (context: WitnessContext<Ledger, PrivAIPrivateState>): [PrivAIPrivateState, bigint] => {
+    return [context.privateState, context.privateState.monthlyIncome];
   },
-  rawApiTokenSecret: (context: WitnessContext<Ledger, AIShieldPrivateState>): [AIShieldPrivateState, Uint8Array] => {
-    return [context.privateState, context.privateState.rawApiTokenSecret];
+  financialSalt: (context: WitnessContext<Ledger, PrivAIPrivateState>): [PrivAIPrivateState, Uint8Array] => {
+    return [context.privateState, context.privateState.financialSalt];
   },
 };

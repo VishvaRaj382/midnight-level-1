@@ -1,56 +1,66 @@
 import type * as __compactRuntime from '@midnight-ntwrk/compact-runtime';
 
-export enum AccessTier { NONE = 0, BASIC = 1, PRO = 2, ENTERPRISE = 3 }
-
-export enum VerificationState { UNVERIFIED = 0, VERIFIED = 1, REVOKED = 2 }
+export enum VerificationStatus {
+  UNVERIFIED = 0,
+  ELIGIBLE = 1,
+  INELIGIBLE = 2
+}
 
 export type Witnesses<PS> = {
   localSecretKey(context: __compactRuntime.WitnessContext<Ledger, PS>): [PS, Uint8Array];
-  rawIdentitySecret(context: __compactRuntime.WitnessContext<Ledger, PS>): [PS, Uint8Array];
-  rawApiTokenSecret(context: __compactRuntime.WitnessContext<Ledger, PS>): [PS, Uint8Array];
+  monthlyIncome(context: __compactRuntime.WitnessContext<Ledger, PS>): [PS, bigint];
+  financialSalt(context: __compactRuntime.WitnessContext<Ledger, PS>): [PS, Uint8Array];
 }
 
 export type ImpureCircuits<PS> = {
-  verifyAndGrantAccess(context: __compactRuntime.CircuitContext<PS>,
-                       requestedTier_0: AccessTier): __compactRuntime.CircuitResults<PS, Uint8Array>;
-  revokeAccess(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
-  checkAccessTier(context: __compactRuntime.CircuitContext<PS>,
-                  targetTier_0: AccessTier): __compactRuntime.CircuitResults<PS, boolean>;
+  setRequirementThreshold(context: __compactRuntime.CircuitContext<PS>,
+                          minIncome: bigint,
+                          metric: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
+  proveIncomeEligibility(context: __compactRuntime.CircuitContext<PS>,
+                         minIncome: bigint): __compactRuntime.CircuitResults<PS, boolean>;
+  queryVerificationResult(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, VerificationStatus>;
 }
 
 export type ProvableCircuits<PS> = {
-  verifyAndGrantAccess(context: __compactRuntime.CircuitContext<PS>,
-                       requestedTier_0: AccessTier): __compactRuntime.CircuitResults<PS, Uint8Array>;
-  revokeAccess(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
-  checkAccessTier(context: __compactRuntime.CircuitContext<PS>,
-                  targetTier_0: AccessTier): __compactRuntime.CircuitResults<PS, boolean>;
+  setRequirementThreshold(context: __compactRuntime.CircuitContext<PS>,
+                          minIncome: bigint,
+                          metric: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
+  proveIncomeEligibility(context: __compactRuntime.CircuitContext<PS>,
+                         minIncome: bigint): __compactRuntime.CircuitResults<PS, boolean>;
+  queryVerificationResult(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, VerificationStatus>;
 }
 
 export type PureCircuits = {
-  deriveUserHash(sk_0: Uint8Array, credentialSecret_0: Uint8Array): Uint8Array;
-  publicKey(sk_0: Uint8Array, salt_0: Uint8Array): Uint8Array;
+  deriveUserCommitment(sk: Uint8Array, salt: Uint8Array): Uint8Array;
+  deriveFinancialCommitment(income: bigint, salt: Uint8Array): Uint8Array;
+  publicKey(sk: Uint8Array, salt: Uint8Array): Uint8Array;
 }
 
 export type Circuits<PS> = {
-  deriveUserHash(context: __compactRuntime.CircuitContext<PS>,
-                 sk_0: Uint8Array,
-                 credentialSecret_0: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
+  deriveUserCommitment(context: __compactRuntime.CircuitContext<PS>,
+                       sk: Uint8Array,
+                       salt: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
+  deriveFinancialCommitment(context: __compactRuntime.CircuitContext<PS>,
+                            income: bigint,
+                            salt: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
   publicKey(context: __compactRuntime.CircuitContext<PS>,
-            sk_0: Uint8Array,
-            salt_0: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
-  verifyAndGrantAccess(context: __compactRuntime.CircuitContext<PS>,
-                       requestedTier_0: AccessTier): __compactRuntime.CircuitResults<PS, Uint8Array>;
-  revokeAccess(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, []>;
-  checkAccessTier(context: __compactRuntime.CircuitContext<PS>,
-                  targetTier_0: AccessTier): __compactRuntime.CircuitResults<PS, boolean>;
+            sk: Uint8Array,
+            salt: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
+  setRequirementThreshold(context: __compactRuntime.CircuitContext<PS>,
+                          minIncome: bigint,
+                          metric: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
+  proveIncomeEligibility(context: __compactRuntime.CircuitContext<PS>,
+                         minIncome: bigint): __compactRuntime.CircuitResults<PS, boolean>;
+  queryVerificationResult(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, VerificationStatus>;
 }
 
 export type Ledger = {
   readonly admin: Uint8Array;
   readonly verificationCount: bigint;
-  readonly activeStatus: VerificationState;
-  readonly lastVerifiedUserHash: Uint8Array;
-  readonly currentTier: AccessTier;
+  readonly activeRequirementThreshold: bigint;
+  readonly activeRequirementMetric: Uint8Array;
+  readonly lastVerifiedCommitment: Uint8Array;
+  readonly lastVerificationResult: VerificationStatus;
 }
 
 export type ContractReferenceLocations = any;
