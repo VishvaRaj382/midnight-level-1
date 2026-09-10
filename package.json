@@ -1,10 +1,10 @@
 {
-  "name": "aishield-midnight",
+  "name": "privai-finance",
   "version": "1.0.0",
-  "description": "AIShield — Privacy-Preserving AI Identity Verification Platform on Midnight Preprod",
+  "description": "PrivAI Finance — Privacy-Preserving Financial Eligibility Platform on Midnight",
   "type": "module",
   "scripts": {
-    "compact": "compact compile contracts/aishield.compact managed",
+    "compact": "compact compile contracts/privai_finance.compact managed",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "test": "vitest run",
