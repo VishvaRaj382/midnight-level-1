@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, ExternalLink } from 'lucide-react';
+import { Shield, ExternalLink, Lock } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,15 +15,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, headerRight }) => {
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-purple-600 p-0.5 shadow-lg shadow-cyan-500/20">
               <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <Shield className="w-5 h-5 text-cyan-400" />
+                <Lock className="w-5 h-5 text-cyan-400" />
               </div>
             </div>
             <div>
               <span className="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5">
-                AIShield <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Midnight ZK Level 5</span>
+                PrivAI Finance <span className="text-xs px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">Midnight Preprod</span>
               </span>
               <p className="text-[11px] text-slate-400 hidden sm:block">
-                Confidential AI Identity Verification & Living Feedback Loop
+                Zero-Knowledge Financial Eligibility Verification & AI Assisted Parsing
               </p>
             </div>
           </div>
@@ -42,7 +42,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, headerRight }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-cyan-400" />
-            <span>Midnight Builder Challenge — Level 5 Submission (50 Preprod Users & Feedback Loop)</span>
+            <span>PrivAI Finance — Midnight Builder Challenge</span>
           </div>
 
           <div className="flex items-center gap-6 text-slate-400">

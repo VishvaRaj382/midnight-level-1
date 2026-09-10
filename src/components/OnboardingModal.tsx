@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle2, ChevronRight, ChevronLeft, ShieldCheck, Key, Coins, Cpu, ExternalLink } from 'lucide-react';
+import { X, CheckCircle2, ChevronRight, ChevronLeft, ShieldCheck, Key, Coins, Lock, ExternalLink } from 'lucide-react';
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -71,34 +71,34 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
     },
     {
       id: 3,
-      title: "3. Generate Zero-Knowledge Access Proof",
-      icon: <ShieldCheck className="w-6 h-6 text-purple-400" />,
+      title: "3. Define Requirement & Enter Private Income",
+      icon: <Lock className="w-6 h-6 text-purple-400" />,
       content: (
         <div className="space-y-3">
           <p className="text-sm text-slate-300 leading-relaxed">
-            Enter your raw organization credential ID and AI secret token. AIShield generates a local ZK proof in Compact 0.23 — proving eligibility without exposing raw credentials on-chain.
+            Set your public benchmark requirement (e.g. Monthly Income ≥ ₹50,000) or let the assistive AI parse your natural-language criteria. Then enter your private income in confidential witness memory.
           </p>
           <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-4">
-            <li>Raw identity secrets remain 100% strictly local in private state.</li>
-            <li>Only disclosed commitment hash is posted to Midnight ledger.</li>
+            <li>Your exact salary remains 100% strictly local in private witness state.</li>
+            <li>Compact circuit evaluates <code className="text-cyan-300">monthlyIncome &gt;= threshold</code> in zero-knowledge.</li>
           </ul>
         </div>
       ),
     },
     {
       id: 4,
-      title: "4. Access AI Services & Provide Feedback",
-      icon: <Cpu className="w-6 h-6 text-amber-400" />,
+      title: "4. Authoritative Verification with Zero Data Leakage",
+      icon: <ShieldCheck className="w-6 h-6 text-amber-400" />,
       content: (
         <div className="space-y-3">
           <p className="text-sm text-slate-300 leading-relaxed">
-            Once verified on-chain, your active access tier (BASIC, PRO, or ENTERPRISE) enables confidential AI API calls. Use the feedback widget to share your Preprod experience!
+            Once proved on-chain, the verifier learns <strong>ELIGIBLE: YES</strong> with cryptographic finality, while your underlying financial salary remains completely secret!
           </p>
           <button
             onClick={onClose}
             className="btn-primary w-full py-2.5 text-sm cursor-pointer justify-center"
           >
-            Start Using AIShield MVP
+            Start Proving Financial Eligibility
           </button>
         </div>
       ),
@@ -106,87 +106,75 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-      <div className="glass-panel w-full max-w-lg overflow-hidden border border-cyan-500/30 shadow-2xl shadow-cyan-950/50 animate-in fade-in zoom-in duration-200">
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-slate-900/60">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4">
+      <div className="glass-panel w-full max-w-lg overflow-hidden border border-cyan-500/30 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+        <div className="flex items-center justify-between p-5 border-b border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
-              <ShieldCheck className="w-5 h-5 text-cyan-400" />
-            </div>
-            <div>
-              <h3 className="font-semibold text-slate-100 text-base">Preprod User Onboarding Guide</h3>
-              <p className="text-xs text-slate-400">Step {currentStep} of {steps.length}</p>
-            </div>
+            <ShieldCheck className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-base font-bold text-white">PrivAI Finance Onboarding Guide</h2>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-200 p-1.5 rounded-lg hover:bg-slate-800 transition-colors"
+            className="p-1.5 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-lg transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Stepper indicators */}
-        <div className="flex border-b border-slate-800/80 bg-slate-950/40 px-4 py-2 justify-between">
-          {steps.map((step) => (
-            <button
-              key={step.id}
-              onClick={() => setCurrentStep(step.id)}
-              className={`flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full transition-all cursor-pointer ${
-                step.id === currentStep
-                  ? 'bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/40'
-                  : step.id < currentStep
-                  ? 'text-emerald-400 font-medium'
-                  : 'text-slate-500'
-              }`}
-            >
-              {step.id < currentStep ? (
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-              ) : (
-                <span>{step.id}</span>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Step Content */}
-        <div className="p-5 space-y-4 bg-slate-950/60">
-          <div className="flex items-center gap-3">
-            <div className="p-3 bg-slate-900 rounded-xl border border-slate-800">
-              {steps[currentStep - 1].icon}
-            </div>
-            <h4 className="font-bold text-slate-100 text-lg">
-              {steps[currentStep - 1].title}
-            </h4>
+        <div className="p-6">
+          <div className="flex items-center justify-between mb-6">
+            {steps.map((s) => (
+              <div
+                key={s.id}
+                onClick={() => setCurrentStep(s.id)}
+                className={`flex flex-col items-center gap-1.5 cursor-pointer flex-1 relative ${
+                  s.id === currentStep ? 'text-cyan-400 font-semibold' : s.id < currentStep ? 'text-emerald-400' : 'text-slate-500'
+                }`}
+              >
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border transition-all ${
+                    s.id === currentStep
+                      ? 'border-cyan-400 bg-cyan-500/20 text-cyan-300 shadow-md shadow-cyan-500/20'
+                      : s.id < currentStep
+                      ? 'border-emerald-500/60 bg-emerald-950/40 text-emerald-400'
+                      : 'border-slate-800 bg-slate-900 text-slate-500'
+                  }`}
+                >
+                  {s.id < currentStep ? <CheckCircle2 className="w-4 h-4" /> : s.id}
+                </div>
+                <span className="text-[10px] hidden sm:block text-center font-mono">
+                  {s.id === 1 ? 'Wallet' : s.id === 2 ? 'Faucet' : s.id === 3 ? 'Income' : 'Verify'}
+                </span>
+              </div>
+            ))}
           </div>
 
-          {steps[currentStep - 1].content}
-        </div>
+          <div className="min-h-[170px] bg-slate-900/40 p-4 rounded-xl border border-slate-800/80 mb-6">
+            <div className="flex items-center gap-2.5 mb-3">
+              {steps[currentStep - 1].icon}
+              <h3 className="text-sm font-semibold text-slate-100">{steps[currentStep - 1].title}</h3>
+            </div>
+            {steps[currentStep - 1].content}
+          </div>
 
-        {/* Footer Navigation */}
-        <div className="flex items-center justify-between p-4 border-t border-slate-800 bg-slate-900/60">
-          <button
-            onClick={() => setCurrentStep((prev) => Math.max(1, prev - 1))}
-            disabled={currentStep === 1}
-            className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-200 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer px-3 py-1.5 rounded-lg hover:bg-slate-800 transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            Previous
-          </button>
-
-          <span className="text-xs text-slate-500">
-            Midnight Preprod Testnet
-          </span>
-
-          <button
-            onClick={() => setCurrentStep((prev) => Math.min(steps.length, prev + 1))}
-            disabled={currentStep === steps.length}
-            className="flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 font-semibold disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer px-3 py-1.5 rounded-lg hover:bg-cyan-950/40 transition-colors"
-          >
-            Next
-            <ChevronRight className="w-4 h-4" />
-          </button>
+          <div className="flex items-center justify-between pt-2 border-t border-slate-800/60">
+            <button
+              onClick={() => setCurrentStep((prev) => Math.max(1, prev - 1))}
+              disabled={currentStep === 1}
+              className="px-3 py-1.5 text-xs text-slate-400 hover:text-slate-200 disabled:opacity-30 disabled:hover:text-slate-400 flex items-center gap-1 cursor-pointer"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span>Back</span>
+            </button>
+            <button
+              onClick={() => setCurrentStep((prev) => Math.min(steps.length, prev + 1))}
+              disabled={currentStep === steps.length}
+              className="px-3 py-1.5 text-xs text-cyan-400 hover:text-cyan-300 disabled:opacity-30 disabled:hover:text-cyan-400 flex items-center gap-1 cursor-pointer font-medium"
+            >
+              <span>Next</span>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
