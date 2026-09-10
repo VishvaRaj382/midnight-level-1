@@ -12,8 +12,7 @@ export function App() {
     activeStep,
     connectWallet,
     disconnectWallet,
-    proveAndVerifyIdentity,
-    revokeVerification,
+    proveIncomeEligibility,
   } = useMidnight();
 
   return (
@@ -31,8 +30,8 @@ export function App() {
         verification={verification}
         isProcessing={isProcessing}
         activeStep={activeStep}
-        onVerify={proveAndVerifyIdentity}
-        onRevoke={revokeVerification}
+        onVerify={proveIncomeEligibility}
+        onRevoke={() => {}}
         onConnectWallet={connectWallet}
       />
     </Layout>

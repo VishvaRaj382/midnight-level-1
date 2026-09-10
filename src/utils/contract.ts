@@ -1,24 +1,11 @@
-import type { AccessTier, VerificationState } from '../../managed/contract/index.js';
+import { VerificationStatus } from '../../managed/contract/index.js';
 
-export function formatTierName(tier: AccessTier | number): string {
-  switch (Number(tier)) {
-    case 1:
-      return 'Basic AI Access';
-    case 2:
-      return 'Pro AI Access';
-    case 3:
-      return 'Enterprise AI Access';
-    default:
-      return 'None / Unverified';
-  }
-}
-
-export function formatStatusName(status: VerificationState | number): string {
+export function formatStatusName(status: VerificationStatus | number): string {
   switch (Number(status)) {
-    case 1:
-      return 'VERIFIED';
-    case 2:
-      return 'REVOKED';
+    case VerificationStatus.ELIGIBLE:
+      return 'ELIGIBLE';
+    case VerificationStatus.INELIGIBLE:
+      return 'INELIGIBLE';
     default:
       return 'UNVERIFIED';
   }

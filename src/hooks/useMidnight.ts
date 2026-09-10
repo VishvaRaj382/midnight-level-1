@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { AccessTier, VerificationState } from '../../managed/contract/index.js';
+import { VerificationStatus } from '../../managed/contract/index.js';
 import { generateRandomSecret, stringToBytes32 } from '../utils/contract.js';
 
 export interface MidnightWalletState {
@@ -12,9 +12,8 @@ export interface MidnightWalletState {
 }
 
 export interface VerificationStateData {
-  status: VerificationState;
-  tier: AccessTier;
-  userHash: Uint8Array | null;
+  status: VerificationStatus;
+  userCommitment: Uint8Array | null;
   txHash: string | null;
   lastUpdated: string | null;
   proofGenerated: boolean;
@@ -31,9 +30,8 @@ export function useMidnight() {
   });
 
   const [verification, setVerification] = useState<VerificationStateData>({
-    status: VerificationState.UNVERIFIED,
-    tier: AccessTier.NONE,
-    userHash: null,
+    status: VerificationStatus.UNVERIFIED,
+    userCommitment: null,
     txHash: null,
     lastUpdated: null,
     proofGenerated: false,
@@ -58,7 +56,6 @@ export function useMidnight() {
           error: null,
         });
       } else {
-        // Fallback simulated connection for testnet demo
         await new Promise((res) => setTimeout(res, 400));
         setWallet({
           isConnected: true,
@@ -93,8 +90,8 @@ export function useMidnight() {
     });
   }, []);
 
-  const proveAndVerifyIdentity = useCallback(
-    async (rawCredentialId: string, apiSecretToken: string, targetTier: AccessTier) => {
+  const proveIncomeEligibility = useCallback(
+    async (rawIncome: number, requiredThreshold: number) => {
       setWallet((prev) => {
         if (!prev.isConnected) {
           return {
@@ -111,25 +108,25 @@ export function useMidnight() {
 
       setIsProcessing(true);
       try {
-        setActiveStep('1/4: Initializing Local Private Witness...');
+        setActiveStep('1/4: Initializing Local Private Witness (monthlyIncome)...');
         await new Promise((res) => setTimeout(res, 500));
 
-        setActiveStep('2/4: Generating Zero-Knowledge Proof off-chain...');
+        setActiveStep('2/4: Generating Zero-Knowledge Proof (monthlyIncome >= threshold)...');
         await new Promise((res) => setTimeout(res, 800));
 
         setActiveStep('3/4: Submitting Compact Circuit Transaction to Midnight Preprod...');
         await new Promise((res) => setTimeout(res, 700));
 
-        setActiveStep('4/4: Confirming On-Chain Disclosed Commitment...');
+        setActiveStep('4/4: Confirming On-Chain Disclosed Eligibility Result...');
         await new Promise((res) => setTimeout(res, 400));
 
-        const derivedHash = stringToBytes32(`${rawCredentialId}:${apiSecretToken}`);
+        const derivedCommitment = stringToBytes32(`privai:user:${rawIncome}`);
         const fakeTxHash = '0x' + Array.from(generateRandomSecret()).map(b => b.toString(16).padStart(2, '0')).join('');
+        const isEligible = rawIncome >= requiredThreshold;
 
         setVerification({
-          status: VerificationState.VERIFIED,
-          tier: targetTier,
-          userHash: derivedHash,
+          status: isEligible ? VerificationStatus.ELIGIBLE : VerificationStatus.INELIGIBLE,
+          userCommitment: derivedCommitment,
           txHash: fakeTxHash,
           lastUpdated: new Date().toLocaleTimeString(),
           proofGenerated: true,
@@ -144,24 +141,6 @@ export function useMidnight() {
     []
   );
 
-  const revokeVerification = useCallback(async () => {
-    setIsProcessing(true);
-    try {
-      setActiveStep('Submitting Revocation Circuit to Midnight...');
-      await new Promise((res) => setTimeout(res, 700));
-
-      setVerification((prev) => ({
-        ...prev,
-        status: VerificationState.REVOKED,
-        tier: AccessTier.NONE,
-        lastUpdated: new Date().toLocaleTimeString(),
-      }));
-    } finally {
-      setIsProcessing(false);
-      setActiveStep('');
-    }
-  }, []);
-
   return {
     wallet,
     verification,
@@ -169,7 +148,6 @@ export function useMidnight() {
     activeStep,
     connectWallet,
     disconnectWallet,
-    proveAndVerifyIdentity,
-    revokeVerification,
+    proveIncomeEligibility,
   };
 }
