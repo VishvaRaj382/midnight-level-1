@@ -1,85 +1,126 @@
-# AIShield — Midnight Moonshot (Privacy-Preserving AI Identity Verification)
+# PrivAI Finance — Privacy-Preserving Financial Eligibility Platform
 
-![Quality Standard](https://img.shields.io/badge/Quality%20Standard-%2410%2C000%20Grand%20Prize%20Pool%20Grade-gold?style=for-the-badge)
-![Level Status](https://img.shields.io/badge/Midnight%20Challenge-Levels%201--5%20Passed-emerald?style=for-the-badge)
-![AIShield Midnight CI/CD](https://github.com/VishvaRaj382/midnight-level-1/actions/workflows/ci.yml/badge.svg)
-![Preprod Users](https://img.shields.io/badge/Preprod%20Users-50%20Verifiable%20Addresses-cyan?style=for-the-badge)
-![Feedback Loop](https://img.shields.io/badge/Feedback%20Loop-Documented%20%26%20Active-purple?style=for-the-badge)
-![Commits](https://img.shields.io/badge/Git%20Commits-20%2B%20Meaningful-blue?style=for-the-badge)
+[![Midnight Preprod](https://img.shields.io/badge/Midnight-Preprod%20Testnet-cyan?style=for-the-badge&logo=shield)](https://midnight.network)
+[![Level 1 Foundation](https://img.shields.io/badge/RiseIn%20Challenge-Level%201%20Passed-emerald?style=for-the-badge)](docs/evidence/LEVEL1_EVIDENCE.md)
+[![Compact 0.23](https://img.shields.io/badge/Smart%20Contract-Compact%200.23-purple?style=for-the-badge)](contracts/privai_finance.compact)
+[![Tests Passing](https://img.shields.io/badge/Vitest-14%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL1_EVIDENCE.md)
 
-> **AIShield** is a privacy-preserving identity & access verification platform for AI services and enterprise models built on Midnight Network, refined through a living feedback loop with 50 Preprod users.
+> **PrivAI Finance** is a zero-knowledge financial eligibility verification platform on the Midnight Network. It enables users to prove they satisfy financial conditions (such as `"Monthly income >= ₹50,000"`) without revealing their exact sensitive financial records to lenders, platforms, DAOs, or employers.
 
 ---
 
-## 🚀 Live Demo & Submission Links
+## 💡 Problem & Solution
 
-- **Live Demo Link**: [http://localhost:5173](http://localhost:5173)
-- **Preprod Contract Address**: `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
-- **50 Preprod Users Directory**: [USERS.md](USERS.md)
-- **Living Feedback Loop Documentation**: [FEEDBACK.md](FEEDBACK.md)
-- **User Onboarding Guide**: [docs/ONBOARDING.md](docs/ONBOARDING.md)
-- **Demo Video Script & Checklist**: [docs/DEMO_VIDEO.md](docs/DEMO_VIDEO.md)
+### The Problem
+Traditional financial verification requires applicants to submit raw bank statements, payslips, or tax filings containing sensitive figures. Lenders and platforms only need to know: **"Does this applicant meet the eligibility threshold?"**, yet they are forced to store and process full financial histories, creating severe data breach risks, privacy violations, and regulatory compliance burdens.
 
----
-
-## 🌟 Submission Checklist (Full Moonshot Progress)
-
-- [x] **Same MVP Extended (Levels 1 to 5)**: Refined AIShield MVP with multi-tab UI, feedback widget, 50 Preprod users registry, and onboarding tour.
-- [x] **50 Preprod Users**: 50 verifiable Bech32 wallet addresses (`mn_preprod1...`) documented in [USERS.md](USERS.md) with ZK proof commitments.
-- [x] **Feedback Loop Documented**: Full survey insights, metrics, and Impact vs Effort prioritization matrix in [FEEDBACK.md](FEEDBACK.md).
-- [x] **Updated Documentation**: Comprehensive [README.md](README.md), [ONBOARDING.md](docs/ONBOARDING.md), and [DEMO_VIDEO.md](docs/DEMO_VIDEO.md).
-- [x] **Meaningful Commit History**: Clean single-repository history representing iterative project milestones.
+### The PrivAI Finance Solution
+PrivAI Finance replaces raw financial disclosure with zero-knowledge cryptographic proofs on Midnight:
+- **Private Witness**: The applicant's actual salary (e.g., `₹73,500`) stays private inside their local machine / wallet.
+- **Authoritative Circuit**: The Midnight Compact smart contract executes `monthlyIncome >= requiredThreshold` in zero-knowledge.
+- **Selective Disclosure**: The verifier learns **`ELIGIBLE: YES`** with cryptographic finality, but **NEVER** learns the underlying salary figure (`₹73,500`).
+- **Assistive AI Layer**: Natural language criteria (e.g. *"Applicants earning at least 50k INR/month"*) are parsed into structured rule schemas without giving AI direct authority over cryptographic verification.
 
 ---
 
-## 🛠 Tech Stack
+## 🔒 Comprehensive Privacy Model
 
-- **Smart Contracts**: Compact 0.23 / 0.31 (`contracts/aishield.compact`)
-- **Zero-Knowledge Runtime**: `@midnight-ntwrk/compact-runtime` (v0.16.0)
-- **Network Target**: Midnight Preprod Testnet
-- **Frontend Framework**: React 18, TypeScript 5.7, Vite 6
-- **Styling**: Cyber Midnight Custom Glassmorphic Design System, Tailwind HSL Tokens, Lucide Icons
-- **Testing**: Vitest 3 unit tests (`aishield.test.ts` & `users.test.ts`) + Automated CLI Verification (`scripts/verify-users.ts`)
-
----
-
-## ⚡ Quick Start & Commands
-
-1. **Clone & Install**:
-   ```bash
-   git clone https://github.com/VishvaRaj382/midnight-level-1.git
-   cd midnight-level-1
-   npm install
-   ```
-
-2. **Run 50 Preprod Users On-Chain Verification**:
-   ```bash
-   npm run verify-users
-   ```
-
-3. **Run Unit Test Suite**:
-   ```bash
-   npm run test
-   ```
-
-4. **Start Development Server**:
-   ```bash
-   npm run dev
-   ```
-   Open `http://localhost:5173` in your browser.
+| Dimension | Details |
+| :--- | :--- |
+| **What is Private** | The applicant's exact income (`monthlyIncome`), private signing key (`localSecretKey`), and financial blinding salt (`financialSalt`). |
+| **What is Public** | Active benchmark threshold (`activeRequirementThreshold`), metric identifier (`activeRequirementMetric`), pseudonymous user commitment (`lastVerifiedCommitment`), and verification counter. |
+| **What the User Proves** | `monthlyIncome >= activeRequirementThreshold` (e.g. `73,500 >= 50,000`). |
+| **What the Verifier Learns** | `ELIGIBLE = YES` (or `NO`), confirmation timestamp, and cryptographic proof validity. |
+| **What the Verifier Does NOT Learn** | The user's exact financial figure (e.g., `₹73,500`), bank balance, or identity linkage. |
+| **Where Disclosure Happens** | Inside the Compact circuit via deliberate `disclose(isEligible)` and `disclose(userCommitment)`. |
+| **Why Zero-Knowledge Proofs?** | Guarantees mathematically that the financial condition was evaluated honestly against real data without leaking the underlying numbers. |
 
 ---
 
-## 🔒 Privacy Model Summary
+## 🤖 AI Safety & Correctness Architecture
 
-### PUBLIC LEDGER STATE (On-Chain, Publicly Verifiable)
-- `admin`: Public key hash of contract issuing authority.
-- `activeStatus`: Current state of user verification (`UNVERIFIED`, `VERIFIED`, `REVOKED`).
-- `currentTier`: Disclosed access tier level (`BASIC`, `PRO`, `ENTERPRISE`).
-- `lastVerifiedUserHash`: Cryptographic commitment hash of user identity.
-- `verificationCount`: Total verification transactions on Midnight ledger.
+AI acts strictly as an assistive parser and **NEVER** controls cryptographic truth or financial eligibility:
 
-### PRIVATE WITNESSES (Local Witness, Never On-Chain)
-- `localSecretKey`: Private signing key seed.
-- `rawIdentitySecret`: Government IDs, passports, student credentials.
-- `rawApiTokenSecret`: Sensitive API keys and access tokens.
+```
+Natural Language Input ("Monthly income >= ₹50,000")
+         │
+         ▼
+Assistive AI Parser
+         │
+         ▼
+Structured Rule: { metric: "monthly_income", operator: ">=", threshold: 50000, currency: "INR" }
+         │
+         ▼
+Schema & Business-Rule Validation (Strict Type Checking)
+         │
+         ▼
+Midnight Compact Circuit (`proveIncomeEligibility`)
+         │
+         ▼
+Local Zero-Knowledge Proof Generation
+         │
+         ▼
+Authoritative On-Chain Verification & Selective Disclosure
+```
+
+---
+
+## 🏗 System Architecture & Contracts
+
+- **Compact Smart Contract:** [`contracts/privai_finance.compact`](contracts/privai_finance.compact)
+- **Generated Runtime Bindings:** [`managed/contract/index.d.ts`](managed/contract/index.d.ts) & [`managed/contract/index.js`](managed/contract/index.js)
+- **Private Witness Provider:** [`witnesses.ts`](witnesses.ts)
+- **Circuit Simulator & Test Suite:** [`tests/privai-simulator.ts`](tests/privai-simulator.ts) & [`tests/privai_finance.test.ts`](tests/privai_finance.test.ts)
+- **Evidence Dossier:** [`docs/evidence/LEVEL1_EVIDENCE.md`](docs/evidence/LEVEL1_EVIDENCE.md)
+
+---
+
+## ⚡ Setup & Development
+
+### Prerequisites
+- Node.js `v22+` (Tested on Node `v24.7.0`)
+- NPM `11+`
+- Docker (optional for local proof server)
+
+### Installation
+```bash
+# Clone the repository
+git clone https://github.com/VishvaRaj382/midnight-level-1.git
+cd midnight-level-1
+
+# Install dependencies
+npm install
+```
+
+### Running Tests
+```bash
+# Run Vitest test suite for Compact circuits & boundary checks
+npm test
+```
+
+### Building the Project
+```bash
+# Type check and build frontend & contract assets
+npm run build
+```
+
+---
+
+## 📊 Level 1 Audit Report
+
+| Requirement | Status | Evidence | Notes |
+| :--- | :---: | :--- | :--- |
+| **Compact Contract** | ✅ PASS | `contracts/privai_finance.compact` | Clean Compact 0.23 circuit implementation |
+| **Public Ledger State** | ✅ PASS | `contracts/privai_finance.compact:28-33` | `threshold`, `metric`, `commitment`, `result` |
+| **Private Witnesses** | ✅ PASS | `contracts/privai_finance.compact:44-46` | `monthlyIncome`, `localSecretKey`, `salt` |
+| **Deliberate Disclosure** | ✅ PASS | `contracts/privai_finance.compact:70-79` | `disclose(isEligible)`, `disclose(userCommitment)` |
+| **Compilation** | ✅ PASS | `npm run build` | Clean TypeScript & Vite compilation (0 errors) |
+| **Unit Test Suite** | ✅ PASS | `tests/privai_finance.test.ts` (14/14 passed) | Covers eligible, ineligible, boundary & privacy |
+| **Managed Runtime** | ✅ PASS | `managed/contract/` | Official `@midnight-ntwrk/compact-runtime` |
+| **Evidence Dossier** | ✅ PASS | `docs/evidence/LEVEL1_EVIDENCE.md` | Recorded terminal outputs & verification specs |
+| **Meaningful Commits** | ✅ PASS | `git log` | Progressive milestone commits |
+
+---
+
+## 📄 License
+Apache-2.0
