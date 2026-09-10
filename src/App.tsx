@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from './components/Layout.js';
 import { WalletConnect } from './components/WalletConnect.js';
-import { AIShieldGuard } from './components/AIShieldGuard.js';
+import { PrivAIGuard } from './components/PrivAIGuard.js';
 import { useMidnight } from './hooks/useMidnight.js';
 
 export function App() {
@@ -25,7 +25,7 @@ export function App() {
         />
       }
     >
-      <AIShieldGuard
+      <PrivAIGuard
         wallet={wallet}
         verification={verification}
         isProcessing={isProcessing}
