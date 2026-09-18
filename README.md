@@ -6,6 +6,7 @@
 [![Compact 0.23](https://img.shields.io/badge/Smart%20Contract-Compact%200.23-purple?style=for-the-badge)](contracts/privai_finance.compact)
 [![Tests Passing](https://img.shields.io/badge/Vitest-22%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL3_EVIDENCE.md)
 [![Preprod Contract](https://img.shields.io/badge/Preprod%20Contract-0x02008f...0d7e-blue?style=for-the-badge)](scripts/deploy.ts)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-midnight--level--1.vercel.app-brightgreen?style=for-the-badge&logo=vercel)](https://midnight-level-1.vercel.app)
 
 > **PrivAI Finance** is a zero-knowledge financial eligibility verification platform on the Midnight Network. It enables users to prove they satisfy financial conditions (such as `"Monthly income >= ₹50,000"`) without revealing their exact sensitive financial records to lenders, platforms, DAOs, or employers.
 
@@ -13,12 +14,20 @@
 
 ## 🚀 Live Demo & Deployment Information
 
-- **Live Local Demo:** `http://localhost:5173` (`npm run dev` / `npm run preview`)
-- **Midnight Network:** Preprod Testnet
-- **Deployed Contract Address:** `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
-- **Wallet Compatibility:** Midnight Lace Wallet extension (`window.midnight.mnLace`)
-- **Faucet:** [Midnight Preprod Faucet](https://faucet.preprod.midnight.network)
-- **Product Proposal:** [PROPOSAL.md](PROPOSAL.md)
+| | |
+| :--- | :--- |
+| 🌐 **Live Website** | **[midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)** |
+| 📜 **Contract Address** | `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e` |
+| 🔗 **Network** | Midnight Preprod Testnet |
+| 👛 **Wallet** | Midnight Lace Wallet (`window.midnight.mnLace`) |
+| 🚰 **Faucet** | [faucet.preprod.midnight.network](https://faucet.preprod.midnight.network) |
+| 📄 **Proposal** | [PROPOSAL.md](PROPOSAL.md) |
+
+---
+
+## 📸 dApp Screenshot
+
+![PrivAI Finance dApp — ZK Eligibility Prover UI](docs/screenshots/dapp-screenshot.png)
 
 ---
 
