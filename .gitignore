@@ -2,11 +2,17 @@ node_modules
 dist
 dist-ssr
 *.local
+.env*
+logs/
 .DS_Store
 *.tsbuildinfo
 managed/*.wasm
 managed/*.keys
 managed/*.json
+managed/compiler/
+managed/keys/
+managed/zkir/
+managed/**/*.map
 !managed/contract/index.js
 !managed/contract/index.d.ts
 !managed/contract/index.cjs

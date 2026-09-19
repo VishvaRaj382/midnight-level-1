@@ -81,10 +81,11 @@ export circuit proveIncomeEligibility(minIncome: Uint<64>): Boolean {
   // Compute deterministic pseudonymous user commitment without revealing user identity or income
   const userCommitment = deriveUserCommitment(sk, salt);
 
-  // Evaluate zero-knowledge condition: actualIncome >= minIncome
-  const isEligible = actualIncome >= minIncome;
+  // Evaluate zero-knowledge condition: actualIncome >= minIncome.
+  // Disclose the boolean outcome before branching so the compiler can
+  // treat the comparison result as a declared public disclosure.
+  const isEligible = disclose(actualIncome >= minIncome);
 
-  // Deliberately disclose the eligibility outcome and pseudonym commitment
   lastVerifiedCommitment = disclose(userCommitment);
   activeRequirementThreshold = disclose(minIncome);
   activeRequirementMetric = pad(32, "monthly_income");
@@ -96,7 +97,7 @@ export circuit proveIncomeEligibility(minIncome: Uint<64>): Boolean {
   }
 
   verificationCount.increment(1);
-  return disclose(isEligible);
+  return isEligible;
 }
 
 export circuit queryVerificationResult(): VerificationStatus {

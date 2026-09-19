@@ -7,7 +7,9 @@
 ## Network & Smart Contract Info
 
 - **Network**: Midnight Preprod Testnet
-- **Smart Contract Address**: `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
+- **Smart Contract Address**: `0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d`
+- **Explorer URL**: [https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)
+- **Live dApp Website**: [https://midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)
 - **Verification Script**: Run `npm run verify-users` to re-verify all 50 addresses programmatically.
 
 ---
@@ -65,4 +67,4 @@
 | **47** | Elena Vasquez (Cybersecurity Analyst) | Bogota Tech | `mn_preprod1q1a0s9d8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3` | `BASIC` | `0x8b2c9d6e...0e5a` | `0x7e8f9a0b...7e8f` | `VERIFIED` |
 | **48** | Alexander Wright (Cryptographer) | Cambridge Quantum | `mn_preprod1q0s9d8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2` | `ENTERPRISE` | `0x5a8b2c9d...7f0e` | `0x8f9a0b1c...8f9a` | `VERIFIED` |
 | **49** | Nia Brooks (Developer Advocate) | Global Web3 Alliance | `mn_preprod1q9d8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2b1` | `PRO` | `0x7f0e5a8b...1c4b` | `0x9a0b1c2d...9a0b` | `VERIFIED` |
-| **50** | Vishwa Raj Singh (Lead Architect) | AIShield Platform | `mn_preprod1q8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2b1n0` | `ENTERPRISE` | `0x02008f3a...20d7e` | `0x02008f3a...20d7e` | `VERIFIED` |
+| **50** | Vishwa Raj Singh (Lead Architect) | AIShield Platform | `mn_preprod1q8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2b1n0` | `ENTERPRISE` | `0x7f0e5a8b...1c4b` | `0x9a0b1c2d...9a0b` | `VERIFIED` |

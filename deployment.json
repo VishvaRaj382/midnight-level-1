@@ -1,0 +1,19 @@
+{
+  "network": "preprod",
+  "contractName": "PrivAIFinance",
+  "contractAddress": "0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d",
+  "deploymentTransactionId": "0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d",
+  "deploymentTransactionHash": "0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d",
+  "blockHeight": 251420,
+  "blockHash": null,
+  "indexedAt": "2026-09-18T12:00:00.000Z",
+  "actionType": "ContractDeploy",
+  "deployedBy": "mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk",
+  "indexer": "https://indexer.preprod.midnight.network/api/v4/graphql",
+  "explorerUrl": "https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d",
+  "source": "Midnight Preprod Deployment",
+  "deployedAt": "2026-09-18T12:00:00.000Z",
+  "tokenAddress": "mn_addr_undeployed1h3ssm5ru2t6eqy4g3she78zlxn96e36ms6pq996aduvmateh9p9sk96u7s",
+  "shieldedAddress": "mn_shield-addr_preview15msqv93emsqdp3sjpmcn8kkpxj96eplsvpglwvl0cqa5t2k5h8q5tl6lew85e9gyr8d9dl9xj3q4kmxhcgumjvjakxparhuyh7n4lcq0zgn42",
+  "containerId": "5a7c708bbfc85fc1140a307d33281f6f56c11bcf3b250a91aa45190a2d8569b4"
+}

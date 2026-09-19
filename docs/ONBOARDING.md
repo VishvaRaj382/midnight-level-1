@@ -38,7 +38,7 @@ flowchart TD
 - Input your Midnight Bech32 wallet address (`mn_preprod1...`) to receive **tNight** gas tokens.
 
 ### Step 3: Zero-Knowledge Verification
-- Open AIShield DApp (`http://localhost:5173`).
+- Open AIShield / PrivAI Finance DApp: [https://midnight-level-1.vercel.app](https://midnight-level-1.vercel.app) (or local `http://localhost:5173`).
 - Click **Connect Midnight Wallet**.
 - Select desired access tier (`BASIC`, `PRO`, or `ENTERPRISE`).
 - Input private credential identifier and secret API token.

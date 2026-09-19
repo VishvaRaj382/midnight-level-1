@@ -2,6 +2,7 @@
   "name": "privai-finance",
   "version": "1.0.0",
   "description": "PrivAI Finance — Privacy-Preserving Financial Eligibility Platform on Midnight",
+  "homepage": "https://midnight-level-1.vercel.app",
   "type": "module",
   "scripts": {
     "compact": "compact compile contracts/privai_finance.compact managed",
@@ -9,7 +10,9 @@
     "build": "tsc -b && vite build",
     "test": "vitest run",
     "verify-users": "tsx scripts/verify-users.ts",
+    "check-funds": "tsx scripts/check-funds.ts",
     "deploy": "tsx scripts/deploy.ts",
+    "verify-deployment": "tsx scripts/verify-deployment.ts",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -25,16 +28,22 @@
     "@midnight-ntwrk/midnight-js-protocol": "4.1.1",
     "@midnight-ntwrk/midnight-js-types": "4.1.1",
     "@midnight-ntwrk/midnight-js-utils": "4.1.1",
+    "@midnight-ntwrk/testkit-js": "^4.1.1",
+    "@midnight-ntwrk/wallet-sdk": "^1.0.0",
     "lucide-react": "^0.475.0",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "ws": "^8.21.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^22.13.4",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@types/ws": "^8.18.1",
     "@vitejs/plugin-react": "^4.3.4",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.19.2",
@@ -46,5 +55,9 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "^4.34.8"
+  },
+  "overrides": {
+    "@midnight-ntwrk/onchain-runtime-v3": "3.0.0",
+    "@swc/core": "1.15.10"
   }
 }

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { VerificationStatus } from '../../managed/contract/index.js';
-import { generateRandomSecret, stringToBytes32 } from '../utils/contract.js';
+import { stringToBytes32 } from '../utils/contract.js';
 
 export interface MidnightWalletState {
   isConnected: boolean;
@@ -17,6 +17,12 @@ export interface VerificationStateData {
   txHash: string | null;
   lastUpdated: string | null;
   proofGenerated: boolean;
+  /**
+   * True while the dashboard evaluates eligibility locally instead of
+   * submitting a transaction through a connected wallet. The UI must label
+   * results accordingly so nothing is presented as an on-chain transaction.
+   */
+  simulated: boolean;
 }
 
 export function useMidnight() {
@@ -35,6 +41,7 @@ export function useMidnight() {
     txHash: null,
     lastUpdated: null,
     proofGenerated: false,
+    simulated: true,
   });
 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -50,7 +57,7 @@ export function useMidnight() {
         setWallet({
           isConnected: true,
           isConnecting: false,
-          address: state.address || 'mn_preprod1q8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2b1n0',
+          address: state.address || 'mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk',
           network: 'Preprod Testnet',
           balance: `${state.coinBalance || '1,250.00'} tNight`,
           error: null,
@@ -60,7 +67,7 @@ export function useMidnight() {
         setWallet({
           isConnected: true,
           isConnecting: false,
-          address: 'mn_preprod1q8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2b1n0',
+          address: 'mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk',
           network: 'Preprod Testnet',
           balance: '2,500.00 tNight',
           error: null,
@@ -71,7 +78,7 @@ export function useMidnight() {
       setWallet({
         isConnected: true,
         isConnecting: false,
-        address: 'mn_preprod1q8f7g6h5j4k3l2z1x0c9v8b7n6m5a4s3d2f1g0h9j8k7l6z5x4c3v2b1n0',
+        address: 'mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk',
         network: 'Preprod Testnet',
         balance: '2,500.00 tNight',
         error: null,
@@ -114,22 +121,24 @@ export function useMidnight() {
         setActiveStep('2/4: Generating Zero-Knowledge Proof (monthlyIncome >= threshold)...');
         await new Promise((res) => setTimeout(res, 800));
 
-        setActiveStep('3/4: Submitting Compact Circuit Transaction to Midnight Preprod...');
+        setActiveStep('3/4: Executing Compact circuit locally (no on-chain transaction yet)...');
         await new Promise((res) => setTimeout(res, 700));
 
-        setActiveStep('4/4: Confirming On-Chain Disclosed Eligibility Result...');
+        setActiveStep('4/4: Deriving the disclosed eligibility result...');
         await new Promise((res) => setTimeout(res, 400));
 
         const derivedCommitment = stringToBytes32(`privai:user:${rawIncome}`);
-        const fakeTxHash = '0x' + Array.from(generateRandomSecret()).map(b => b.toString(16).padStart(2, '0')).join('');
         const isEligible = rawIncome >= requiredThreshold;
 
         setVerification({
           status: isEligible ? VerificationStatus.ELIGIBLE : VerificationStatus.INELIGIBLE,
           userCommitment: derivedCommitment,
-          txHash: fakeTxHash,
+          // No transaction hash is produced: this path runs locally and must
+          // not report a fabricated on-chain transaction.
+          txHash: null,
           lastUpdated: new Date().toLocaleTimeString(),
           proofGenerated: true,
+          simulated: true,
         });
       } catch (err: any) {
         setWallet((prev) => ({ ...prev, error: err?.message || 'ZK Proof Verification Failed' }));

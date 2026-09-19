@@ -22,6 +22,7 @@ import {
 import { VerificationStatus } from '../../managed/contract/index.js';
 import type { MidnightWalletState, VerificationStateData } from '../hooks/useMidnight.js';
 import { formatStatusName, truncateHash } from '../utils/contract.js';
+import { DEPLOYMENT, shortContractAddress } from '../config/deployment.js';
 import { parseNaturalLanguageRequirement, type StructuredRule } from '../utils/aiRuleParser.js';
 import { PreprodUserRegistry } from './PreprodUserRegistry.js';
 import { FeedbackDashboard } from './FeedbackDashboard.js';
@@ -366,7 +367,11 @@ export const PrivAIGuard: React.FC<PrivAIGuardProps> = ({
 
                 <div className="flex justify-between items-center p-2.5 rounded bg-slate-900/60 border border-slate-800">
                   <span className="text-slate-400">Proof Tx Hash</span>
-                  <span className="text-purple-300">{truncateHash(verification.txHash || '0x0000...0000')}</span>
+                  <span className="text-purple-300">
+                    {verification.simulated
+                      ? 'not submitted on-chain'
+                      : truncateHash(verification.txHash || '')}
+                  </span>
                 </div>
 
                 <div className="flex justify-between items-center p-2.5 rounded bg-slate-900/60 border border-slate-800">
@@ -392,8 +397,22 @@ export const PrivAIGuard: React.FC<PrivAIGuardProps> = ({
               </div>
 
               {/* Contract Info Footer */}
-              <div className="mt-4 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400 font-mono flex justify-between items-center">
-                <span>Contract: 0x02008f...0d7e</span>
+              <div className="mt-4 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400 font-mono flex justify-between items-center gap-2">
+                {DEPLOYMENT ? (
+                  <a
+                    href={DEPLOYMENT.explorerUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={DEPLOYMENT.contractAddress}
+                    className="hover:text-cyan-300 underline decoration-dotted"
+                  >
+                    Contract: {shortContractAddress()}
+                  </a>
+                ) : (
+                  <span title="No verified Preprod deployment has been recorded yet.">
+                    Contract: not deployed
+                  </span>
+                )}
                 <span className="text-cyan-400 flex items-center gap-1">
                   Compact 0.23 Circuit
                 </span>

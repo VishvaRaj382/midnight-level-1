@@ -5,7 +5,7 @@
 [![PrivAI Finance Midnight CI/CD](https://github.com/VishvaRaj382/midnight-level-1/actions/workflows/ci.yml/badge.svg)](.github/workflows/ci.yml)
 [![Compact 0.23](https://img.shields.io/badge/Smart%20Contract-Compact%200.23-purple?style=for-the-badge)](contracts/privai_finance.compact)
 [![Tests Passing](https://img.shields.io/badge/Vitest-22%20Passing-brightgreen?style=for-the-badge)](docs/evidence/LEVEL3_EVIDENCE.md)
-[![Preprod Contract](https://img.shields.io/badge/Preprod%20Contract-0x02008f...0d7e-blue?style=for-the-badge)](scripts/deploy.ts)
+[![Preprod Contract](https://img.shields.io/badge/Preprod%20Contract-0e989ec7...0de49c4d-blue?style=for-the-badge)](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-midnight--level--1.vercel.app-brightgreen?style=for-the-badge&logo=vercel)](https://midnight-level-1.vercel.app)
 
 > **PrivAI Finance** is a zero-knowledge financial eligibility verification platform on the Midnight Network. It enables users to prove they satisfy financial conditions (such as `"Monthly income >= ₹50,000"`) without revealing their exact sensitive financial records to lenders, platforms, DAOs, or employers.
@@ -14,20 +14,27 @@
 
 ## 🚀 Live Demo & Deployment Information
 
-| | |
+| Parameter | Value / Resource Link |
 | :--- | :--- |
-| 🌐 **Live Website** | **[midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)** |
-| 📜 **Contract Address** | `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e` |
+| 🌐 **Live Website (dApp)** | **[https://midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)** |
+| 📜 **Contract Address** | [`0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d`](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d) |
+| 🔍 **Midnight Explorer** | **[explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)** |
+| 🪙 **Midnight Token Address** | `mn_addr_undeployed1h3ssm5ru2t6eqy4g3she78zlxn96e36ms6pq996aduvmateh9p9sk96u7s` |
+| 👛 **Deployer Wallet Address** | `mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk` |
+| 🛡️ **Shielded Address** | `mn_shield-addr_preview15msqv93emsqdp3sjpmcn8kkpxj96eplsvpglwvl0cqa5t2k5h8q5tl6lew85e9gyr8d9dl9xj3q4kmxhcgumjvjakxparhuyh7n4lcq0zgn42` |
+| 📦 **Container ID / Seed** | `5a7c708bbfc85fc1140a307d33281f6f56c11bcf3b250a91aa45190a2d8569b4` |
 | 🔗 **Network** | Midnight Preprod Testnet |
-| 👛 **Wallet** | Midnight Lace Wallet (`window.midnight.mnLace`) |
+| 👛 **Wallet Integration** | Midnight Lace Wallet (`window.midnight.mnLace`) |
 | 🚰 **Faucet** | [faucet.preprod.midnight.network](https://faucet.preprod.midnight.network) |
-| 📄 **Proposal** | [PROPOSAL.md](PROPOSAL.md) |
+| 📄 **Architecture Proposal** | [PROPOSAL.md](PROPOSAL.md) |
 
 ---
 
 ## 📸 dApp Screenshot
 
-![PrivAI Finance dApp — ZK Eligibility Prover UI](docs/screenshots/dapp-screenshot.png)
+[![PrivAI Finance dApp — Live on Vercel](https://raw.githubusercontent.com/VishvaRaj382/midnight-level-1/main/docs/screenshots/dapp-screenshot.png)](https://midnight-level-1.vercel.app)
+
+*Figure 1: PrivAI Finance dApp running live on Midnight Preprod Testnet at [midnight-level-1.vercel.app](https://midnight-level-1.vercel.app) — Assistive AI Requirement Parser, Confidential Private Witness Inputs, and Authoritative On-Chain Midnight Ledger State.*
 
 ---
 

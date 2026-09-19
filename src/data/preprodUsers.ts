@@ -1,3 +1,13 @@
+/**
+ * Sample Preprod user registry for UX/demo purposes.
+ *
+ * DISCLAIMER: the wallet addresses and the `proofHash` / `txHash` values in
+ * this file are illustrative sample data used to render the registry UI. They
+ * are NOT on-chain records and cannot be resolved against the Midnight Preprod
+ * indexer. The a11y checks in `tests/users.test.ts` only validate the expected
+ * string shape. Real on-chain evidence is produced by `scripts/deploy.ts` and
+ * recorded in `deployment.json`.
+ */
 export interface PreprodUser {
   id: number;
   name: string;
@@ -714,8 +724,8 @@ export const PREPROD_USERS: PreprodUser[] = [
     accessTier: "ENTERPRISE",
     status: "VERIFIED",
     verifiedAt: "2026-08-11T22:45:00Z",
-    proofHash: "0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e",
-    txHash: "0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e",
+    proofHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+    txHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
     satisfactionScore: 5,
     primaryUseCase: "Midnight Level 5 Preprod MVP Master Deployment"
   }

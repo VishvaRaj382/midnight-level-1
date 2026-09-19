@@ -7,6 +7,16 @@ export interface PrivAIPrivateState {
   financialSalt: Uint8Array;
 }
 
+export const createPrivAIPrivateState = (
+  localSecretKey: Uint8Array,
+  monthlyIncome = 0n,
+  financialSalt = new Uint8Array(32),
+): PrivAIPrivateState => ({
+  localSecretKey,
+  monthlyIncome,
+  financialSalt,
+});
+
 export const witnesses = {
   localSecretKey: (context: WitnessContext<Ledger, PrivAIPrivateState>): [PrivAIPrivateState, Uint8Array] => {
     return [context.privateState, context.privateState.localSecretKey];

@@ -8,8 +8,8 @@
 
 - **Title**: AIShield — Privacy-Preserving AI Identity Verification (Midnight Preprod Level 5)
 - **Target Duration**: 2:30 - 3:00 minutes
-- **Recorded URL / Live Demo**: `http://localhost:5173`
-- **Preprod Contract Address**: `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
+- **Recorded URL / Live Demo**: [https://midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)
+- **Preprod Contract Address**: [`0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d`](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)
 
 ---
 

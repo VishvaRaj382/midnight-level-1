@@ -5,6 +5,14 @@
 
 Using Midnight's Compact smart contracts, zero-knowledge proofs, and an assistive AI requirement parser, PrivAI Finance enables applicants to prove eligibility with mathematical certainty while keeping their exact financial numbers 100% confidential.
 
+### 🚀 Live Deployment & Verification Links
+- **Live dApp Website**: [https://midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)
+- **Midnight Preprod Contract Address**: [`0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d`](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)
+- **Preprod Explorer**: [https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)
+- **Midnight Token Address**: `mn_addr_undeployed1h3ssm5ru2t6eqy4g3she78zlxn96e36ms6pq996aduvmateh9p9sk96u7s`
+- **Deployer Wallet**: `mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk`
+- **Target Network**: Midnight Preprod Testnet
+
 ---
 
 ## 2. Problem Statement & Market Need

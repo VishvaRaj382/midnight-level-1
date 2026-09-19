@@ -3,7 +3,8 @@
 ## 1. Executive Summary
 **PrivAI Finance** Level 2 delivers a fully interactive, privacy-first Web3 frontend wired to the Midnight Compact smart contract, supporting the official **Midnight Lace Wallet** extension, real-time zero-knowledge proof generation progress, natural-language requirement parsing via an assistive AI layer, and clear privacy guarantees.
 
-- **Deployed Preprod Contract Address:** `0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e`
+- **Deployed Preprod Contract Address:** [`0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d`](https://explorer.preprod.midnight.network/contract/0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d)
+- **Live dApp Website:** [https://midnight-level-1.vercel.app](https://midnight-level-1.vercel.app)
 - **Target Network:** Midnight Preprod Testnet
 - **Key Privacy Guarantee:** *"Your exact income is NOT disclosed. Verifier learns only whether you satisfy the threshold."*
 
@@ -114,7 +115,9 @@ dist/assets/index-DnMsaZfj.js                                 495.67 kB │ gzip
   DEPLOYMENT RESULT
 ==========================================================================
   Contract Name     : PrivAIFinance
-  Deployed Address  : 0x02008f3a9e4d5882b71946c18f258e7275d312984bc0369811a2f1b490f20d7e
+  Deployed Address  : 0e989ec7a218a94a0bdcdbaf636ddb8eda51f3b75356cf349811ddac0de49c4d
+  Token Address     : mn_addr_undeployed1h3ssm5ru2t6eqy4g3she78zlxn96e36ms6pq996aduvmateh9p9sk96u7s
+  Deployer Wallet   : mn_addr_preprod1hnkz7qgerql2ljh9v0wht5wwys99s969y6le5nvkzryd5qwgaryq8d9clk
   Verification Type : Zero-Knowledge Private Income Circuit
   Deliberate Disclose : [isEligible, lastVerifiedCommitment]
 ==========================================================================

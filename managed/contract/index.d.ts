@@ -1,10 +1,6 @@
 import type * as __compactRuntime from '@midnight-ntwrk/compact-runtime';
 
-export enum VerificationStatus {
-  UNVERIFIED = 0,
-  ELIGIBLE = 1,
-  INELIGIBLE = 2
-}
+export enum VerificationStatus { UNVERIFIED = 0, ELIGIBLE = 1, INELIGIBLE = 2 }
 
 export type Witnesses<PS> = {
   localSecretKey(context: __compactRuntime.WitnessContext<Ledger, PS>): [PS, Uint8Array];
@@ -14,43 +10,43 @@ export type Witnesses<PS> = {
 
 export type ImpureCircuits<PS> = {
   setRequirementThreshold(context: __compactRuntime.CircuitContext<PS>,
-                          minIncome: bigint,
-                          metric: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
+                          minIncome_0: bigint,
+                          metric_0: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
   proveIncomeEligibility(context: __compactRuntime.CircuitContext<PS>,
-                         minIncome: bigint): __compactRuntime.CircuitResults<PS, boolean>;
+                         minIncome_0: bigint): __compactRuntime.CircuitResults<PS, boolean>;
   queryVerificationResult(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, VerificationStatus>;
 }
 
 export type ProvableCircuits<PS> = {
   setRequirementThreshold(context: __compactRuntime.CircuitContext<PS>,
-                          minIncome: bigint,
-                          metric: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
+                          minIncome_0: bigint,
+                          metric_0: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
   proveIncomeEligibility(context: __compactRuntime.CircuitContext<PS>,
-                         minIncome: bigint): __compactRuntime.CircuitResults<PS, boolean>;
+                         minIncome_0: bigint): __compactRuntime.CircuitResults<PS, boolean>;
   queryVerificationResult(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, VerificationStatus>;
 }
 
 export type PureCircuits = {
-  deriveUserCommitment(sk: Uint8Array, salt: Uint8Array): Uint8Array;
-  deriveFinancialCommitment(income: bigint, salt: Uint8Array): Uint8Array;
-  publicKey(sk: Uint8Array, salt: Uint8Array): Uint8Array;
+  deriveUserCommitment(sk_0: Uint8Array, salt_0: Uint8Array): Uint8Array;
+  deriveFinancialCommitment(income_0: bigint, salt_0: Uint8Array): Uint8Array;
+  publicKey(sk_0: Uint8Array, salt_0: Uint8Array): Uint8Array;
 }
 
 export type Circuits<PS> = {
   deriveUserCommitment(context: __compactRuntime.CircuitContext<PS>,
-                       sk: Uint8Array,
-                       salt: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
+                       sk_0: Uint8Array,
+                       salt_0: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
   deriveFinancialCommitment(context: __compactRuntime.CircuitContext<PS>,
-                            income: bigint,
-                            salt: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
+                            income_0: bigint,
+                            salt_0: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
   publicKey(context: __compactRuntime.CircuitContext<PS>,
-            sk: Uint8Array,
-            salt: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
+            sk_0: Uint8Array,
+            salt_0: Uint8Array): __compactRuntime.CircuitResults<PS, Uint8Array>;
   setRequirementThreshold(context: __compactRuntime.CircuitContext<PS>,
-                          minIncome: bigint,
-                          metric: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
+                          minIncome_0: bigint,
+                          metric_0: Uint8Array): __compactRuntime.CircuitResults<PS, []>;
   proveIncomeEligibility(context: __compactRuntime.CircuitContext<PS>,
-                         minIncome: bigint): __compactRuntime.CircuitResults<PS, boolean>;
+                         minIncome_0: bigint): __compactRuntime.CircuitResults<PS, boolean>;
   queryVerificationResult(context: __compactRuntime.CircuitContext<PS>): __compactRuntime.CircuitResults<PS, VerificationStatus>;
 }
 
